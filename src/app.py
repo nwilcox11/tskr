@@ -2,8 +2,7 @@ from utils import warn_and_exit
 from file_reader import File_reader
 
 class App:
-    def __init__(self, store, reader: File_reader) -> None:
-        self.store = store
+    def __init__(self, reader: File_reader) -> None:
         self.reader = reader
 
     def add(self, new_task: str) -> None:
