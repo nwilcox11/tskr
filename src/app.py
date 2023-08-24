@@ -1,3 +1,5 @@
+from typing import List
+
 from utils import warn_and_exit
 from file_reader import File_reader
 
@@ -11,8 +13,7 @@ class App:
 
     def list(self) -> None:
         tasks = self.reader.get_all()
-        for i in range(len(tasks)):
-            print("{0}. {1}".format(i + 1, tasks[i]))
+        __render(tasks)
 
     def done(self, task_id: str) -> None:
         if str(task_id).isdigit():
@@ -23,3 +24,7 @@ class App:
 
     def clear(self) -> None:
         self.reader.reset_store()
+
+def __render(tasks: List[str]) -> None:
+    for i in range(len(tasks)):
+        print("{0}. {1}".format(i + 1, tasks[i]))

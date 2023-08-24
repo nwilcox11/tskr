@@ -10,8 +10,7 @@ STORE = os.environ["STORE"]
 if __name__ == "__main__":
     args = sys.argv
     arg_len = len(args)
-    reader = File_reader(STORE)
-    app = App(reader)
+    app = App(File_reader(STORE))
 
     warn_and_exit(arg_len < 2, "Please use a sub-command: [add, list, done, clear, reset]")
     sub_command = args[1]
