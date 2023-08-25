@@ -38,13 +38,12 @@ class File_reader:
                     store.close()
         return []
 
-    def update_one(self, id: int) -> None:
+    def remove_one(self, id: int) -> None:
         tasks = self.get_all()
         task = self.__find_one(tasks, id)
 
         if task is not None:
-            tasks[id] = task.replace(" -", " +")
-
+            tasks.remove(task)
             store = self.__open_writeable_store()
             if store is not None:
                 json.dump(tasks, store)

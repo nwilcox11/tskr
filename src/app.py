@@ -8,23 +8,23 @@ class App:
         self.reader = reader
 
     def add(self, new_task: str) -> None:
-        new_task = "{0} {1}".format(new_task, "-")
         self.reader.append_one(new_task)
 
-    def list(self) -> None:
+    def show(self) -> None:
         tasks = self.reader.get_all()
-        __render(tasks)
+        render(tasks)
 
     def done(self, task_id: str) -> None:
         if str(task_id).isdigit():
             task_i_int = int(task_id) - 1
-            self.reader.update_one(task_i_int)
+            self.reader.remove_one(task_i_int)
         else:
             warn_and_exit(True, "done sub-command requires a digit")
 
-    def clear(self) -> None:
+    def reset(self) -> None:
         self.reader.reset_store()
 
-def __render(tasks: List[str]) -> None:
-    for i in range(len(tasks)):
-        print("{0}. {1}".format(i + 1, tasks[i]))
+def render(items: List[str]) -> None:
+    for i in range(len(items)):
+        print("{0}. {1}".format(i + 1, items[i]))
+
